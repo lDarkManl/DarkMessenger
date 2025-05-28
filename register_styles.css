@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: #f0f2f5; /* Светлый серо-голубой фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.register-container {
+    background-color: #fff; /* Белый фон */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Тень для глубины */
+    width: 100%;
+    max-width: 400px; /* Ограничение ширины */
+    text-align: center;
+}
+
+.register-container h2 {
+    font-size: 24px;
+    font-weight: 500;
+    color: #0088cc; /* Синий цвет в стиле Telegram */
+    margin-bottom: 20px;
+}
+
+.register-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Расстояние между элементами */
+}
+
+.register-container label {
+    font-size: 16px;
+    color: #333;
+    text-align: left;
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0; /* Светлая граница */
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.register-container input[type="text"]:focus,
+.register-container input[type="password"]:focus {
+    border-color: #0088cc; /* Синий цвет при фокусе */
+}
+
+.register-container button {
+    padding: 12px;
+    background-color: #0088cc; /* Синий цвет в стиле Telegram */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.register-container button:hover {
+    background-color: #0077b3; /* Темнее при наведении */
+}
+
+.register-container a {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #0088cc;
+    text-decoration: none;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}
