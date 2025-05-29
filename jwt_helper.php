@@ -31,7 +31,7 @@ class JwtHelper {
             return $decoded->user_id;
         } catch (\Exception $e) {
             // Если произошла ошибка (например, токен недействителен или истек), возвращаем false
-            return false;
+            return true;
         }
     }
 }

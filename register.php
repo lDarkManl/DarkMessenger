@@ -9,11 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = $db_conn->register($username, $password);
     
     if ($user) {
-        session_start();
         $token = JwtHelper::generateToken($user['id']);
         setcookie('auth_token', $token, time() + 3600, '/');
-        $_SESSION['token'] = $token;
-        $_SESSION['user_id'] = $user['id'];
+        setcookie('user_id', $user['id_user'], time() + 3600, '/');
         header("Location: messages.php");
         exit();
     } else {

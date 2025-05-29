@@ -1,9 +1,7 @@
 <?php
-// Запускаем сессию
-session_start();
 
 // Проверяем, авторизован ли пользователь
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_COOKIE['user_id'])) {
     header('Location: login.html');
     exit();
 }
@@ -13,7 +11,7 @@ require 'database.php';
 $db_conn = DarkMessager::get_instance("dark_messager", "root");
 
 // Получаем чаты для текущего пользователя
-$chats = $db_conn->get_chats_for_user($_SESSION['user_id']);
+$chats = $db_conn->get_chats_for_user($_COOKIE['user_id']);
 
 // Получаем всех пользователей для списка контактов
 $users = $db_conn->get_all_users();
@@ -46,7 +44,7 @@ $users = $db_conn->get_all_users();
         <button class="create-group-chat" id="create-group-chat">Новая группа</button>
         <div class="user-list">
             <?php foreach ($users as $user): ?>
-                <?php if ($user['id_user'] != $_SESSION['user_id']): ?>
+                <?php if ($user['id_user'] != $_COOKIE['user_id']): ?>
                     <button data-user-id="<?= htmlspecialchars($user['id_user']) ?>">
                         <?= htmlspecialchars($user['login']) ?>
                     </button>
@@ -72,7 +70,7 @@ $users = $db_conn->get_all_users();
             <input type="text" id="chat-name" required>
             <h4>Выберите участников:</h4>
             <?php foreach ($users as $user): ?>
-                <?php if ($user['id_user'] != $_SESSION['user_id']): ?>
+                <?php if ($user['id_user'] != $_COOKIE['user_id']): ?>
                     <label>
                         <input type="checkbox" name="members[]" value="<?= htmlspecialchars($user['id_user']) ?>">
                         <?= htmlspecialchars($user['login']) ?>
@@ -86,8 +84,8 @@ $users = $db_conn->get_all_users();
 
     <script>
         // Устанавливаем токен и идентификатор пользователя
-        const token = '<?= htmlspecialchars($_SESSION['token'] ?? '') ?>';
-        const userId = <?= $_SESSION['user_id'] ?>;
+        const token = '<?= htmlspecialchars($_COOKIE['auth_token'] ?? '') ?>';
+        const userId = <?= $_COOKIE['user_id'] ?>;
         const socket = new WebSocket(`ws://myproject:8080?token=${token}`);
         let currentChatId = null;
         const chatContainer = document.querySelector('.chat-container');
