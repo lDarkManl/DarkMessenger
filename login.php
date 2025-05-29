@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
     $db_conn = DarkMessager::get_instance("dark_messager", "root");
-    $user = $db_conn->get_user($username, $password);
+    $user = $db_conn->get_user($username);
     
     if ($user && password_verify($password, $user['password'])) {
         session_start();
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: messages.php");
         exit();
     } else {
-        echo "Invalid username or password";
+        echo "Неправильное имя пользователя или пароль";
     }
 }
 ?>

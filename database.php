@@ -33,8 +33,8 @@ class DarkMessager {
         return ['id' => $this->sql_connection->lastInsertId(), 'username' => $username];
     }
 
-    // Получение данных пользователя по логину и паролю
-    public function get_user($username, $password) {
+    // Получение данных пользователя по логину
+    public function get_user($username) {
         $stmt = $this->sql_connection->prepare("SELECT * FROM Users WHERE login = :login");
         $stmt->bindParam(':login', $username);
         $stmt->execute();
@@ -183,13 +183,12 @@ class DarkMessager {
 
     // Удаление сообщения из базы данных
     public function deleteMessage($message_id, $user_id) {
-        // Удаляем сообщение (без проверки прав доступа для упрощения)
         $stmt = $this->sql_connection->prepare("
             DELETE FROM Messages WHERE id_message = :message_id
         ");
         $stmt->bindParam(':message_id', $message_id);
         $stmt->execute();
-        return true; // Возвращаем успех
+        return true;
     }
 }
 ?>

@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: messages.php");
         exit();
     } else {
-        echo "Error occurred. Please try again.";
+        echo "Произошла ошибка. Попробуйте еще раз.";
     }
 }
 ?>
